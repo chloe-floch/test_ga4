@@ -13,7 +13,36 @@
   </script>
 </head>
 <body>
+  <div style="text-align: center; margin-top: 100px;">
   <h1>Bienvenue sur ma page test GA4 !</h1>
   <p>Cette page a été créée pour tester la connexion avec Google Analytics 4.</p>
+  <h2>Test GA4</h2>
+<p>Clique sur le bouton ci-dessous pour envoyer un événement GA4 👇</p>
+
+<button id="btnTest">Tester un événement GA4</button>
+
+<script>
+  // Envoie d’un événement personnalisé à GA4
+  document.getElementById('btnTest').addEventListener('click', function() {
+    gtag('event', 'test_click', {
+      'event_category': 'interaction',
+      'event_label': 'bouton test GA4'
+    });
+    console.log('Événement "test_click" envoyé à GA4');
+  });
+</script>
+
+    <div id="stats"></div>
+<script>
+  // Requête via fetch vers un proxy backend ou mock
+  fetch('/api/ga4-stats')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('stats').innerText = 
+        `Nombre de visites aujourd'hui : ${data.visits}`;
+    });
+</script>
+
+
 </body>
 </html>
